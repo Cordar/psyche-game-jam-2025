@@ -1,45 +1,15 @@
-DerivedDataCache
-Intermediate
-Saved
-Build
+.godot/
+.nomedia
 
-.vs
-.vscode
-*.VC.db
-*.opensdf
-*.opendb
-*.sdf
-*.sln
-*.suo
-*.xcodeproj
-*.xcworkspace
-*.pdb
-*.exe
-*.exp
-*.wav
-*.mp4
+Godot-specific ignores,
+.import/
+export.cfg
+exportcredentials.cfg
 
-# Compiled source files for the engine to use
-Intermediate/*
-Plugins/*/Intermediate/*
+Imported translations (automatically generated from CSV files),
+*.translation
 
-# Cache files for the editor to use
-DerivedDataCache/*
-
-# Visual Studio
-.vs/
-.vsconfig
-.vscode/
-.idea/
-
-# Files 
-*_BuiltData*
-
-# Shipping build files
-Binaries/Win64/D3D12/*
-Binaries/Win64/HeartWeaver-Win64-Shipping.lib
-Binaries/Win64/HeartWeaver-Win64-Shipping.target
-Binaries/Win64/OpenImageDenoise.dll
-Binaries/Win64/tbb.dll
-Binaries/Win64/tbb12.dll
-Binaries/Win64/tbbmalloc.dll
+Mono-specific ignores,
+.mono/
+data/
+mono_crash..json
