@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1s7vmhx4o3qo"]
+[gd_scene load_steps=7 format=3 uid="uid://d1s7vmhx4o3qo"]
 
 [ext_resource type="ArrayMesh" uid="uid://7ra2h4uty1sk" path="res://computer.vox" id="1_umdun"]
 [ext_resource type="ArrayMesh" uid="uid://bb265f6ixftyy" path="res://coffee_machine.vox" id="2_4lxp8"]
@@ -6,32 +6,23 @@
 [ext_resource type="ArrayMesh" uid="uid://oirx1mvvm502" path="res://chair.vox" id="4_dbbb4"]
 [ext_resource type="ArrayMesh" uid="uid://cy2mgl2es5k5r" path="res://coffee_mug.vox" id="5_5vwpt"]
 [ext_resource type="ArrayMesh" uid="uid://cwt3kgtgvmmos" path="res://plant.vox" id="6_u1dpq"]
-[ext_resource type="ArrayMesh" uid="uid://cfm2m1cuigu1a" path="res://uncle.vox" id="7_a5av3"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_34nnl"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_nk001"]
 
 [node name="main" type="Node3D"]
 
 [node name="computer" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51354, 5.24575, -9.56138)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.21702, 2.70858, -0.664857)
 mesh = ExtResource("1_umdun")
 
 [node name="CoffeeMachine" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -10.4444, 4.9307, 5.69627)
+transform = Transform3D(0.0804886, 0, -0.183089, 0, 0.2, 0, 0.183089, 0, 0.0804886, 0.31762, 3.11959, -0.514103)
 mesh = ExtResource("2_4lxp8")
 
-[node name="floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 28.92, 0, 0, 0)
-mesh = SubResource("PlaneMesh_34nnl")
-
 [node name="Desk" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 1.52938, -1.90735e-06, -7.26614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52938, 0.5, 0.16629)
 mesh = ExtResource("3_g1ba4")
 
 [node name="Chair" type="MeshInstance3D" parent="."]
-transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 3.27638, -0.178793, -6.58296)
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 2.19606, 0.5, 0.99113)
 mesh = ExtResource("4_dbbb4")
 
 [node name="CoffeeMug" type="MeshInstance3D" parent="."]
@@ -42,10 +33,19 @@ mesh = ExtResource("5_5vwpt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60614, 5.2515, -9.21498)
 mesh = ExtResource("6_u1dpq")
 
-[node name="Uncle" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.25836, 0, 2.72333, 0, 3, 0, -2.72333, 0, -1.25836, 8.42074, 0, -4.63731)
-mesh = ExtResource("7_a5av3")
+[node name="floor" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(10, 1, 10)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(5.2544, 0, 0, 0, 4.72655, 0, 0, 0, 11.1037, -10.5756, 1.5768, 6.92131)
-mesh = SubResource("BoxMesh_nk001")
+[node name="wall" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.5, 5.5, 0)
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="wall2" type="CSGBox3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 5.5, -5.5)
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.422191, 0.906507, 0, -0.906507, 0.422191, 0, 9.39903, 5.81825)
