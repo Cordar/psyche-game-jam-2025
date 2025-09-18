@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1s7vmhx4o3qo"]
+[gd_scene load_steps=11 format=3 uid="uid://d1s7vmhx4o3qo"]
 
 [ext_resource type="ArrayMesh" uid="uid://7ra2h4uty1sk" path="res://assets/computer.vox" id="1_umdun"]
 [ext_resource type="ArrayMesh" uid="uid://bb265f6ixftyy" path="res://assets/coffee_machine.vox" id="2_4lxp8"]
@@ -6,8 +6,25 @@
 [ext_resource type="ArrayMesh" uid="uid://oirx1mvvm502" path="res://assets/chair.vox" id="4_dbbb4"]
 [ext_resource type="ArrayMesh" uid="uid://cy2mgl2es5k5r" path="res://assets/coffee_mug.vox" id="5_5vwpt"]
 [ext_resource type="ArrayMesh" uid="uid://cwt3kgtgvmmos" path="res://assets/plant.vox" id="6_u1dpq"]
+[ext_resource type="AudioStream" uid="uid://bvnhcftmncst" path="res://audio/office-ambience-6322.mp3" id="7_o6xl0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tefeu"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_o6xl0"]
+sky_material = SubResource("ProceduralSkyMaterial_tefeu")
+
+[sub_resource type="Environment" id="Environment_tipki"]
+background_mode = 1
+background_color = Color(0.0666667, 0.305882, 0.215686, 1)
+sky = SubResource("Sky_o6xl0")
+tonemap_mode = 2
 
 [node name="main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tipki")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.422191, 0.906507, 0, -0.906507, 0.422191, 0, 9.39903, 5.81825)
@@ -16,49 +33,63 @@ use_collision = true
 [node name="floor" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 0.422191, -0.906507, 0, 0.906507, 0.422191, 0, 1.3061, -10.9767)
 use_collision = true
-size = Vector3(10, 1, 10)
+size = Vector3(20, 1, 20)
+
+[node name="ceiling" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.422191, -0.906507, 0, 0.906507, 0.422191, 0, 5.9502, -1.00512)
+use_collision = true
+size = Vector3(20, 1, 20)
 
 [node name="wall" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -1, 0, 0.422191, -1.84546e-08, -0.906507, 0.906507, -3.96247e-08, 0.422191, -5.5, 3.62815, -5.99091)
+transform = Transform3D(-4.37114e-08, -1, 0, 0.422191, -1.84546e-08, -0.906507, 0.906507, -3.96247e-08, 0.422191, -10.4592, 3.62815, -5.99091)
 use_collision = true
-size = Vector3(10, 1, 10)
+size = Vector3(10, 1, 20)
+
+[node name="wall3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 0.422191, -1.84546e-08, -0.906507, 0.906507, -3.96247e-08, 0.422191, 10.5408, 3.62815, -5.99091)
+use_collision = true
+size = Vector3(10, 1, 20)
 
 [node name="wall2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 0.422191, -0.906507, 3.96247e-08, 0.906507, 0.422191, -1.84546e-08, 0, 8.61394, -8.31296)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 0.422191, -0.906507, 3.96247e-08, 0.906507, 0.422191, -1.84546e-08, 0, 13.1465, -10.4239)
 use_collision = true
-size = Vector3(10, 1, 10)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, -0.234873, 0.666959, 0, 0.943223, 0.332161, -0.707107, -0.234873, 0.666959, 7.14785, 8.04501, 6.4103)
-fov = 45.6
+size = Vector3(10, 1, 20)
 
 [node name="computer" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.21702, 2.70858, -0.664857)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.33056, 3.65, -1.00391)
 mesh = ExtResource("1_umdun")
 
 [node name="CoffeeMachine" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0804886, 0, -0.183089, 0, 0.2, 0, 0.183089, 0, 0.0804886, 0.31762, 3.11959, -0.514103)
+transform = Transform3D(0.0804886, 0, -0.183089, 0, 0.2, 0, 0.183089, 0, 0.0804886, -0.27414, 4.00574, -0.605656)
 mesh = ExtResource("2_4lxp8")
 
 [node name="Desk" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52938, 0.5, 0.16629)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.52938, 0.5, 0.16629)
 mesh = ExtResource("3_g1ba4")
 
 [node name="Chair" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 2.19606, 0.5, 0.99113)
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 2.19606, 0.499998, 0.0487601)
 mesh = ExtResource("4_dbbb4")
 
 [node name="CoffeeMug" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.867289, 5.23519, 1.05618)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.536757, 3.65, 0.349934)
 mesh = ExtResource("5_5vwpt")
 
 [node name="Plant" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60614, 5.2515, 0.0573835)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.69339, 3.65, -2.1592)
 mesh = ExtResource("6_u1dpq")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.422191, 0.906507, 0, -0.906507, 0.422191, 0, 9.39903, 5.81825)
-light_color = Color(1, 0.101961, 1, 1)
-spot_range = 7.028
-spot_attenuation = 2.75
-spot_angle = 50.26
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87593, 8.32647, -0.000607014)
+light_color = Color(0.831373, 1, 1, 1)
+light_energy = 7.83
+light_indirect_energy = 0.0
+omni_range = 13.227
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 3, 13)
+fov = 79.8746
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_o6xl0")
+autoplay = true
